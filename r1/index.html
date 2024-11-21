@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex Color Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #010c0e;
+            margin-bottom: 20px;
+        }
+        .main {
+            background: #3A3A38;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .main:hover {
+            transform: scale(1.05);
+        }
+        label {
+            display: block;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        #colorPicker {
+            outline: none;
+            border: none;
+            height: 50px;
+            width: 80px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        #box {
+            outline: none;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            height: 40px;
+            width: 140px;
+            padding: 5px 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        #randomBtn {
+            padding: 10px 20px;
+            background-color: #1c6c04;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        #randomBtn:hover {
+            background-color: #8777ee;
+        }
+        footer {
+            margin-top: 20px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hex Color Generator</h1>
+    <div class="main">
+        <label for="colorPicker">Select a Color</label>
+        <input type="color" id="colorPicker" value="#6a5acd">
+
+        <label for="box">Hex Code</label>
+        <input type="text" id="box" readonly>
+
+        <button id="randomBtn">Generate Random Color</button>
+    </div>
+    <footer>🎨 Experiment with colors and brighten your day!</footer>
+    <script>
+        function myColor() {
+            // Get the value from the color picker
+            const color = document.getElementById('colorPicker').value;
+            document.body.style.backgroundColor = color; // Change background
+            document.getElementById('box').value = color; // Display hex code
+        }
+
+        function randomColor() {
+            // Generate a random hex color
+            const randomHex = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+            document.getElementById('colorPicker').value = randomHex;
+            document.body.style.backgroundColor = randomHex; // Change background
+            document.getElementById('box').value = randomHex; // Display hex code
+        }
+
+        // Event listeners
+        document.getElementById('colorPicker').addEventListener('input', myColor);
+        document.getElementById('randomBtn').addEventListener('click', randomColor);
+    </script>
+</body>
+</html>
